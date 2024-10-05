@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+@font-face {
+  font-family: 'windows';
+  src: url('../../public/w95fa.woff2') format('woff2'),
+       url('../../public/w95fa.woff') format('woff');
+/*   font-weight: 401;
+  font-style: normal; */
+}

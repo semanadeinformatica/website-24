@@ -1,0 +1,169 @@
+<script setup lang="ts">
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import CardLayout from "@/Layouts/CardLayout.vue";
+import type Event from "@/Types/Event";
+import type EventDay from "@/Types/EventDay";
+import type EventType from "@/Types/EventType";
+import type { User } from "@/Types/User";
+import { useForm } from "@inertiajs/vue3";
+import route from "ziggy-js";
+
+interface Props {
+    item: Event;
+    with: {
+        event_days: EventDay[];
+        event_types: EventType[];
+        users: User[];
+    };
+}
+
+const { item: event } = defineProps<Props>();
+
+const form = useForm({
+    name: event.name,
+    time_start: event.time_start.substring(0, 16),
+    time_end: event.time_end.substring(0, 16),
+    topic: event.topic,
+    description: event.description ?? "",
+    capacity: event.capacity?.toString() ?? "",
+    event_day_id: event.event_day_id.toString(),
+    event_type_id: event.event_type_id.toString(),
+    location: event.location ?? "",
+    external_url: event.external_url ?? "",
+    users: event.users?.map((u) => u.id.toString()) ?? [],
+});
+
+const submit = () => {
+    form.put(route("admin.events.update", event));
+};
+</script>
+
+<template>
+    <CardLayout title="Editar evento">
+        <form class="contents" @submit.prevent="submit">
+            <TextInput
+                id="name"
+                v-model="form.name"
+                label="Nome"
+                type="text"
+                required
+                autofocus
+                autocomplete="name"
+                :error-message="form.errors.name"
+            />
+
+            <TextInput
+                id="time_start"
+                v-model="form.time_start"
+                label="Hora de início"
+                type="time"
+                step="1"
+                required
+                :error-message="form.errors.time_start"
+            />
+
+            <TextInput
+                id="time_end"
+                v-model="form.time_end"
+                label="Hora de fim"
+                type="time"
+                step="1"
+                required
+                :error-message="form.errors.time_end"
+            />
+
+            <TextInput
+                id="topic"
+                v-model="form.topic"
+                label="Tópico"
+                type="text"
+                required
+                :error-message="form.errors.topic"
+            />
+
+            <TextInput
+                id="location"
+                v-model="form.location"
+                label="Local"
+                type="text"
+                :error-message="form.errors.location"
+            />
+
+            <TextInput
+                id="external_url"
+                v-model="form.external_url"
+                label="URL Externo"
+                type="url"
+                :error-message="form.errors.external_url"
+            />
+
+            <TextInput
+                id="description"
+                v-model="form.description"
+                label="Descrição"
+                type="textarea"
+                :error-message="form.errors.description"
+            />
+
+            <TextInput
+                id="capacity"
+                v-model="form.capacity"
+                label="Capacidade"
+                type="number"
+                :error-message="form.errors.capacity"
+            />
+
+            <TextInput
+                v-model="form.event_day_id"
+                type="select"
+                required
+                label="Dia do evento"
+                :error-message="form.errors.event_day_id"
+            >
+                <option
+                    v-for="day in $props.with.event_days"
+                    :key="day.id"
+                    :value="day.id"
+                >
+                    {{ $d(day.date, "short") }}
+                </option>
+            </TextInput>
+
+            <TextInput
+                v-model="form.event_type_id"
+                type="select"
+                required
+                label="Tipo do evento"
+                :error-message="form.errors.event_type_id"
+            >
+                <option
+                    v-for="_type in $props.with.event_types"
+                    :key="_type.id"
+                    :value="_type.id"
+                >
+                    {{ _type.name }}
+                </option>
+            </TextInput>
+
+            <TextInput
+                id="users[]"
+                v-model="form.users"
+                type="select"
+                label="Utilizadores"
+                multiple
+                :error-message="form.errors.users"
+            >
+                <option
+                    v-for="user in $props.with.users"
+                    :key="user.id"
+                    :value="user.id"
+                >
+                    {{ user.name }}
+                </option>
+            </TextInput>
+
+            <PrimaryButton type="submit">Editar</PrimaryButton>
+        </form>
+    </CardLayout>
+</template>
