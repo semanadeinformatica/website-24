@@ -48,13 +48,13 @@ const enroll = () => {
                 <li>
                     Participa em
                     <a
-                        :href="route('program', { day: 6 })"
+                        :href="route('program', { day: 1 })"
                         target="_blank"
                         class="text-2024-blue underline"
                         >Workshops e Palestras</a
                     >
                 </li>
-                <li>
+<!--                 <li>
                     Visita
                     <a
                         :href="route('program', { day: 1 })"
@@ -62,8 +62,8 @@ const enroll = () => {
                         class="text-2024-blue underline"
                         >Bancas de Empresas</a
                     >
-                </li>
-                <li>
+                </li> -->
+<!--                 <li>
                     Compete nas
                     <a
                         :href="route('program', { day: 3 })"
@@ -71,7 +71,7 @@ const enroll = () => {
                         class="text-2024-blue underline"
                         >Competições de CTF e Programação</a
                     >
-                </li>
+                </li> -->
             </ul>
             <p>
                 Ganha pontos e troca-os por prémios na

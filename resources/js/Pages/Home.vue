@@ -190,6 +190,7 @@ const formattedDate = (
         <!-- SPONSORS -->
         <section id="sponsors" class="flex flex-col gap-10 px-20 py-20">
             <p
+                v-if="sponsorTiers.length != 0"
                 class="mr-[5px] flex w-min place-self-center border border-solid border-black bg-2024-light-blue p-3 text-2xl font-bold text-white shadow shadow-2024-bg"
             >
                 Patrocínios
