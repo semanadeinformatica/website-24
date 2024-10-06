@@ -40,7 +40,7 @@ const editions = computed<Record<number, string>>(() =>
                 <Header filter-by="edition_id" :filter-values="editions"
                     >Edição</Header
                 >
-                <Header sort-by="theme">Tema</Header>
+                <Header sort-by="theme">Tema (Ignorado na edição 2024)</Header>
                 <Header sort-by="date">Data</Header>
             </HeaderRow>
         </template>

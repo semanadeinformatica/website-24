@@ -57,7 +57,7 @@ const participants = computed<Record<number, string>>(() =>
                     >Participante</Header
                 >
                 <Header filter-by="department_id" :filter-values="departments"
-                    >Departamento</Header
+                    >Departamento (Ignorado na edição 2024)</Header
                 >
                 <Header
                     filter-by="coordinator"

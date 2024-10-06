@@ -42,7 +42,7 @@ const submit = () => {
 <template>
     <CardLayout title="Editar Staff">
         <form class="contents" @submit.prevent="submit">
-            <TextInput
+<!--             <TextInput
                 v-model="form.department_id"
                 type="select"
                 required
@@ -57,7 +57,7 @@ const submit = () => {
                     {{ department.name }}
                     - {{ editions[department.edition_id] }}
                 </option>
-            </TextInput>
+            </TextInput> -->
 
             <TextInput
                 v-model="form.participant_id"

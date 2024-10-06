@@ -46,7 +46,7 @@ const submit = () => {
                 </option>
             </TextInput>
 
-            <TextInput
+<!--             <TextInput
                 id="theme"
                 v-model="form.theme"
                 label="Tema"
@@ -54,7 +54,7 @@ const submit = () => {
                 required
                 autofocus
                 :error-message="form.errors.theme"
-            />
+            /> -->
 
             <TextInput
                 id="date"

@@ -29,13 +29,13 @@ defineProps<{
         v-if="(department.staff?.length ?? 0) > 0"
         class="flex flex-col items-center gap-4"
     >
-        <p
+<!--         <p
             class="w-fit border border-black p-2 px-6 text-center text-xl font-bold shadow"
             :class="textColor[color] || shadowColor[color]"
         >
             {{ department.name }}
-        </p>
-        <section class="flex flex-row flex-wrap justify-center gap-4">
+        </p> -->
+        <section class="flex flex-row flex-wrap justify-center gap-4 m-10">
             <div
                 v-for="(staff, idx) in department.staff"
                 :key="idx"

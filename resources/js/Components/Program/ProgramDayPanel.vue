@@ -153,14 +153,14 @@ onMounted(() => {
             </button> -->
         </div>
     </section>
-    <p
+<!--     <p
         v-if="
             (selectedType === 'talk' || selectedType === 'activity') && !noInfo
         "
         class="mr-2 mt-5 max-w-2xl border border-solid border-black p-2.5 px-8 text-justify text-lg font-bold text-2024-black shadow-md shadow-2024-black"
     >
         {{ day.theme }}
-    </p>
+    </p> -->
     <template v-if="noInfo">
         <p class="pt-40 text-4xl font-bold text-2024-light-blue">Em breve...</p>
     </template>

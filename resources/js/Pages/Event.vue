@@ -172,7 +172,6 @@ const colorPicker = () => {
                 </a>
                 <template v-else>Inscreve-te!</template>
             </PrimaryButton>
-
             <PrimaryButton
                 v-else-if="isEnrolled && hasJoined"
                 color="teal-dark"

@@ -21,7 +21,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const form = useForm({
-    department_id: "",
+    department_id: props.with.departments[0].id,
     participant_id: "",
     coordinator: false,
 });
@@ -40,7 +40,7 @@ const submit = () => {
 <template>
     <CardLayout title="Adicionar Staff">
         <form class="contents" @submit.prevent="submit">
-            <TextInput
+<!--             <TextInput
                 v-model="form.department_id"
                 type="select"
                 required
@@ -55,7 +55,7 @@ const submit = () => {
                     {{ department.name }}
                     - {{ editions[department.edition_id] }}
                 </option>
-            </TextInput>
+            </TextInput> -->
 
             <TextInput
                 v-model="form.participant_id"
