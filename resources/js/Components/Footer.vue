@@ -67,7 +67,7 @@ const contacts = [
         <div class="container mx-auto text-center font-bold text-2024-black">
             <p>
                 Copyright &copy; 2024
-                <a href="https://ni.fe.up.pt/">NIAEFEUP</a>, todos os direitos
+                <a href="https://niaefeup.pt/">NIAEFEUP</a>, todos os direitos
                 reservados
             </p>
         </div>

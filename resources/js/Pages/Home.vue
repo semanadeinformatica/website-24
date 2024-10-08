@@ -207,7 +207,7 @@ const formattedDate = (
         <!-- CALL TO ACTION -->
         <EnrollSection v-if="canEnroll" id="enroll-wrapper" />
         <!-- MAP -->
-        <section class="bg-2024-blue p-10">
+        <section class="bg-2024-light-blue p-10">
             <MapComponent />
         </section>
     </AppLayout>
