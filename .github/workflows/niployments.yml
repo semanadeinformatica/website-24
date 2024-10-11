@@ -17,8 +17,8 @@ jobs:
         docker_context: .
         docker_target: deploy
         docker_build_args: |
-          LARAVEL_ENV= {{ vars.LARAVEL_ENV }}
-          LARAVEL_ENV_FILE={{ vars.LARAVEL_ENV_FILE }}
+          LARAVEL_ENV=${{ vars.LARAVEL_ENV }}
+          LARAVEL_ENV_FILE=${{ vars.LARAVEL_ENV_FILE }}
           LARAVEL_ENV_FILE_KEY=${{ secrets.LARAVEL_ENV_FILE_KEY }}
         NIPLOYMENTS_REGISTRY_URL: ${{ vars.NIPLOYMENTS_REGISTRY_URL }}
         NIPLOYMENTS_REGISTRY_USERNAME: ${{ vars.NIPLOYMENTS_REGISTRY_USERNAME }}
