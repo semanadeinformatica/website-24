@@ -103,29 +103,30 @@ class EventController extends Controller
 
     public function remove(Request $request,Event $event, Enrollment $enrollment)
     {
-        $edition = $request->input('edition');
+        if (Gate::allows('admin') || Gate::allows('staff', [$edition])) {
+            $edition = $request->input('edition');
 
-        $user = $enrollment->participant?->user;
+            $user = $enrollment->participant?->user;
 
-        if ($edition === null) {
-            return response('No edition found', 500);
-        }
+            if ($edition === null) {
+                return response('No edition found', 500);
+            }
 
-        if ($enrollment === null) {
-            Log::alert('User {user} attempted to leave event "{event}" while not enrolled in the current edition', [
+            if ($enrollment === null) {
+                Log::alert('User {user} attempted to leave event "{event}" while not enrolled in the current edition', [
+                    'user' => $user->name,
+                    'event' => $event->name,
+                ]);
+
+                return redirect()->route('home')->dangerBanner('Não está inscrito nesta edição!');
+            }
+
+            $enrollment->events()->detach($event);
+            Log::info('User {user} left event "{event}"', [
                 'user' => $user->name,
                 'event' => $event->name,
             ]);
-
-            return redirect()->route('home')->dangerBanner('Não está inscrito nesta edição!');
         }
-
-        $enrollment->events()->detach($event);
-        Log::info('User {user} left event "{event}"', [
-            'user' => $user->name,
-            'event' => $event->name,
-        ]);
-
     } 
 
     /**
