@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
@@ -50,6 +51,7 @@ class EventController extends Controller
             'isStaff' => $isStaff,
         ]);
     }
+
 
     /**
      * The current user wants to join the given event.
@@ -98,6 +100,33 @@ class EventController extends Controller
 
         return redirect()->route('profile.show')->banner('Inscrição realizada com sucesso!');
     }
+
+    public function remove(Request $request,Event $event, Enrollment $enrollment)
+    {
+        $edition = $request->input('edition');
+
+        $user = $enrollment->participant?->user;
+
+        if ($edition === null) {
+            return response('No edition found', 500);
+        }
+
+        if ($enrollment === null) {
+            Log::alert('User {user} attempted to leave event "{event}" while not enrolled in the current edition', [
+                'user' => $user->name,
+                'event' => $event->name,
+            ]);
+
+            return redirect()->route('home')->dangerBanner('Não está inscrito nesta edição!');
+        }
+
+        $enrollment->events()->detach($event);
+        Log::info('User {user} left event "{event}"', [
+            'user' => $user->name,
+            'event' => $event->name,
+        ]);
+
+    } 
 
     /**
      * The current user wants to leave the given event if enrolled.

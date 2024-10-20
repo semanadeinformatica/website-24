@@ -199,6 +199,18 @@ const colorPicker = () => {
                 >
                     {{ enrollment.participant?.user?.name ?? enrollment.id }} -
                     {{ enrollment.participant?.user?.email ?? enrollment.id }}
+
+                    <!-- TODO: MAKE A DIALOG FOR CONFIRMATION -->
+                    <PrimaryButton
+                        color="teal-dark"
+                        shadow="red"
+                        @click="router.put(route('event.remove',{
+                            event,
+                            enrollment
+                        }))"
+                    >
+                        X
+                    </PrimaryButton>
                 </div>
             </div>
             <p v-else class="text-center text-2xl font-bold text-2024-black">
