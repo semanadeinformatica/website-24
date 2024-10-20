@@ -65,7 +65,7 @@ Route::prefix('/event')->name('event')->group(function () {
         Route::get('/', [EventController::class, 'show'])->name('.show');
         Route::put('/join', [EventController::class, 'join'])->name('.join');
         Route::put('/leave', [EventController::class, 'leave'])->name('.leave');
-        Route::put('/{enrollment}/remove', [EventController::class,'remove'])->name('.remove');
+        Route::put('/{enrollment}/remove', [EventController::class, 'remove'])->middleware('can:admin')->name('.remove');
     });
 });
 
